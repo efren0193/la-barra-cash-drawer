@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;" />
+  <title>La Barra Caja</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand"><span class="logo">LB</span><div><h1>La Barra Caja</h1><p>Conector local del cajón de dinero</p></div></div>
+      <span id="serviceBadge" class="badge">Iniciando…</span>
+    </header>
+
+    <section class="grid summary">
+      <article class="card"><span class="label">Impresora</span><strong id="printerName">—</strong><span id="printerStatus" class="muted">Consultando…</span></article>
+      <article class="card"><span class="label">Puerto de impresión</span><strong id="printerPort">—</strong><span class="muted">Formato RAW</span></article>
+      <article class="card"><span class="label">Servicio del POS</span><strong id="apiUrl">—</strong><span class="muted">Solo accesible en esta PC</span></article>
+    </section>
+
+    <section class="card actions">
+      <div><h2>Prueba del cajón</h2><p>Envía el pulso ESC/POS a la impresora seleccionada.</p></div>
+      <button id="testButton" class="primary">Abrir caja de prueba</button>
+    </section>
+
+    <section class="card">
+      <h2>Configuración</h2>
+      <div class="form-grid">
+        <label>Impresora<select id="printerSelect"></select></label>
+        <label>Puerto de la API<input id="apiPort" type="number" min="1024" max="65535" /></label>
+        <label>Pin del cajón<select id="drawerPin"><option value="0">Pin 2 (0) — recomendado</option><option value="1">Pin 5 (1)</option></select></label>
+        <label>Orígenes permitidos<textarea id="allowedOrigins" rows="3" placeholder="https://tu-pos.com"></textarea></label>
+      </div>
+      <div class="checks">
+        <label><input id="autoStart" type="checkbox" /> Iniciar automáticamente con Windows</label>
+        <label><input id="startMinimized" type="checkbox" /> Iniciar oculto en la bandeja</label>
+      </div>
+      <div class="token-row"><label>Token secreto<input id="token" readonly /></label><button id="copyToken">Copiar</button><button id="newToken">Generar otro</button></div>
+      <div class="footer-actions"><button id="refreshButton">Actualizar impresoras</button><button id="saveButton" class="primary">Guardar configuración</button></div>
+    </section>
+
+    <section class="card"><h2>Actividad reciente</h2><ul id="events"><li class="empty">Aún no hay actividad.</li></ul></section>
+  </main>
+  <div id="toast"></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

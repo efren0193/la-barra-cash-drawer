@@ -1,0 +1,42 @@
+{
+  "name": "la-barra-cash-drawer",
+  "version": "1.0.0",
+  "description": "Servicio local de La Barra para abrir el cajón de dinero mediante una impresora ESC/POS",
+  "main": "src/main.js",
+  "author": "La Barra",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "dist:win": "electron-builder --win nsis",
+    "pack:win": "electron-builder --win dir"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "mx.labarra.cashdrawer",
+    "productName": "La Barra Caja",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "La-Barra-Caja-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "La Barra Caja"
+    }
+  }
+}
