@@ -4,7 +4,8 @@ Aplicación Electron para Windows que conecta el POS web de **La Barra** con el 
 
 ## Configuración inicial
 
-- Cola de Windows: `Generic / Text Only`
+- Nombre de la impresora en Windows: `POS58 Printer USB`
+- Controlador: `Generic / Text Only`
 - Puerto: `USB001`
 - Formato: `RAW`
 - API local: `http://127.0.0.1:17321`
@@ -30,12 +31,14 @@ npm install
 npm run dist:win
 ```
 
-El instalador se genera en `dist/La-Barra-Caja-Setup-1.0.0.exe`. La computadora del restaurante no necesitará Node.js.
+El instalador se genera en `dist/La-Barra-Caja-Setup-1.0.2.exe`. La computadora del restaurante no necesitará Node.js.
+
+Los scripts PowerShell se copian en `resources/powershell` durante el empaquetado para que Windows pueda ejecutarlos fuera del archivo `app.asar`.
 
 ## Uso
 
 1. Instala y abre **La Barra Caja**.
-2. Confirma que la impresora seleccionada sea `Generic / Text Only` y muestre `USB001`.
+2. Confirma que la impresora seleccionada sea `POS58 Printer USB` y muestre `USB001`.
 3. Presiona **Abrir caja de prueba**.
 4. Copia el token secreto y colócalo en la variable privada del POS.
 5. Agrega el dominio real del POS en **Orígenes permitidos**.
@@ -73,7 +76,7 @@ fetch("http://127.0.0.1:17321/health").then((response) => response.json());
 
 1. Confirma que el cajón esté conectado a `CASH/DK`, no directamente a la PC.
 2. Cambia **Pin del cajón** de `Pin 2 (0)` a `Pin 5 (1)` y repite la prueba.
-3. Revisa que no haya trabajos detenidos en la cola `Generic / Text Only`.
+3. Revisa que no haya trabajos detenidos en la cola `POS58 Printer USB`.
 4. Confirma que la impresora siga usando `USB001` y el procesador RAW.
 5. Algunas impresoras requieren tiempos distintos; los valores internos iniciales son 50 ms y 500 ms.
 

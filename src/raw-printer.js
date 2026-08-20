@@ -1,5 +1,6 @@
 const { execFile } = require("node:child_process");
 const path = require("node:path");
+const { app } = require("electron");
 
 function runPowerShell(script, args = []) {
   return new Promise((resolve, reject) => {
@@ -19,7 +20,9 @@ function runPowerShell(script, args = []) {
 }
 
 function scriptPath(name) {
-  return path.join(__dirname, "powershell", name);
+  return app.isPackaged
+    ? path.join(process.resourcesPath, "powershell", name)
+    : path.join(__dirname, "powershell", name);
 }
 
 async function getPrinters() {

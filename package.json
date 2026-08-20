@@ -1,6 +1,6 @@
 {
   "name": "la-barra-cash-drawer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Servicio local de La Barra para abrir el cajón de dinero mediante una impresora ESC/POS",
   "main": "src/main.js",
   "author": "La Barra",
@@ -23,6 +23,13 @@
       "src/**/*",
       "assets/**/*",
       "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "src/powershell",
+        "to": "powershell",
+        "filter": ["**/*.ps1"]
+      }
     ],
     "directories": {
       "output": "dist"

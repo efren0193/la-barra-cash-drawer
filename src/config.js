@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const defaults = {
-  printerName: "Generic / Text Only",
+  printerName: "POS58 Printer USB",
   port: 17321,
   token: "",
   autoStart: true,
